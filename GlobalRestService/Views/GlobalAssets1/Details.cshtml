@@ -1,0 +1,74 @@
+﻿@model GlobalRestService.Models.GlobalAsset
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>GlobalAsset</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AssetType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssetType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AssetSubType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssetSubType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SerialNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SerialNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientIdentifier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClientIdentifier)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastServiceDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastServiceDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NextServiceDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NextServiceDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AssetID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
