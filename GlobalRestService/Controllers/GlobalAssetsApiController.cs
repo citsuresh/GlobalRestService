@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Diagnostics;
 using System.Linq;
@@ -58,7 +59,6 @@ namespace GlobalRestService.Controllers
 				try
 				{
 					db.GlobalAssets.AddOrUpdate(asset);
-
 					db.SaveChanges();
 					tx.Commit();
 				}
@@ -81,8 +81,8 @@ namespace GlobalRestService.Controllers
 			{
 				try
 				{
-					db.GlobalAssets.AddOrUpdate(asset);
-
+					db.GlobalAssets.Attach(asset);
+					db.Entry(asset).State = EntityState.Unchanged;
 					db.SaveChanges();
 					tx.Commit();
 				}

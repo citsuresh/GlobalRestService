@@ -18,5 +18,6 @@ namespace GlobalRestService.Models
         public int AssetType { get; set; }
         public int AssetSubType { get; set; }
         public int Count { get; set; }
+        public string ClientIdentifier { get; set; }
     }
 }

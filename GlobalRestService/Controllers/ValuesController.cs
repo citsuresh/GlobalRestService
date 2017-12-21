@@ -11,7 +11,7 @@ namespace GlobalRestService.Controllers
 {
 	public class ValuesController : ApiController
 	{
-		private GlobalAssetDBEntities db = new GlobalAssetDBEntities();
+		private GlobalAssetRestServiceDBEntities db = new GlobalAssetRestServiceDBEntities();
 
 		// GET api/values
 		public IEnumerable<AssetCounter> Get()
@@ -37,7 +37,7 @@ namespace GlobalRestService.Controllers
 		{
 			if (jsonValue == null)
 				return;
-			var existingCounter = db.AssetCounters.FirstOrDefault(counter => counter.AssetType == jsonValue.AssetType && counter.AssetSubType == jsonValue.AssetSubType);
+			var existingCounter = db.AssetCounters.FirstOrDefault(counter => counter.ClientIdentifier == jsonValue.ClientIdentifier && counter.AssetType == jsonValue.AssetType && counter.AssetSubType == jsonValue.AssetSubType);
 
 			using (var tx = db.Database.BeginTransaction())
 			{
@@ -54,7 +54,7 @@ namespace GlobalRestService.Controllers
 
 					db.SaveChanges();
 					tx.Commit();
-				}
+				}	
 				catch (Exception)
 				{
 					tx.Rollback();

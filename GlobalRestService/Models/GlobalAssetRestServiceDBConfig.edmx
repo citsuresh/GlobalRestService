@@ -13,12 +13,13 @@
           <Property Name="AssetType" Type="int" Nullable="false" />
           <Property Name="AssetSubType" Type="int" Nullable="false" />
           <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="ClientIdentifier" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="GlobalAsset">
           <Key>
             <PropertyRef Name="AssetID" />
           </Key>
-          <Property Name="AssetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AssetID" Type="int" Nullable="false" />
           <Property Name="AssetType" Type="int" Nullable="false" />
           <Property Name="AssetSubType" Type="int" Nullable="false" />
           <Property Name="SerialNumber" Type="nvarchar" MaxLength="255" />
@@ -44,12 +45,13 @@
           <Property Name="AssetType" Type="Int32" Nullable="false" />
           <Property Name="AssetSubType" Type="Int32" Nullable="false" />
           <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="ClientIdentifier" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="GlobalAsset">
           <Key>
             <PropertyRef Name="AssetID" />
           </Key>
-          <Property Name="AssetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AssetID" Type="Int32" Nullable="false" />
           <Property Name="AssetType" Type="Int32" Nullable="false" />
           <Property Name="AssetSubType" Type="Int32" Nullable="false" />
           <Property Name="SerialNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -75,6 +77,7 @@
                 <ScalarProperty Name="AssetType" ColumnName="AssetType" />
                 <ScalarProperty Name="AssetSubType" ColumnName="AssetSubType" />
                 <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="ClientIdentifier" ColumnName="ClientIdentifier" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
