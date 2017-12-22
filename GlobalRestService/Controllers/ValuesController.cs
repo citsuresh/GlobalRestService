@@ -37,7 +37,7 @@ namespace GlobalRestService.Controllers
 		{
 			if (jsonValue == null)
 				return;
-			var existingCounter = db.AssetCounters.FirstOrDefault(counter => counter.ClientIdentifier == jsonValue.ClientIdentifier && counter.AssetType == jsonValue.AssetType && counter.AssetSubType == jsonValue.AssetSubType);
+			var existingCounter = db.AssetCounters.FirstOrDefault(counter => string.Compare(counter.ClientIdentifier, jsonValue.ClientIdentifier, StringComparison.InvariantCulture) == 0 && counter.AssetType == jsonValue.AssetType && counter.AssetSubType == jsonValue.AssetSubType);
 
 			using (var tx = db.Database.BeginTransaction())
 			{
