@@ -12,7 +12,7 @@ namespace GlobalRestService.Controllers
 {
     public class GlobalAssetsController : Controller
     {
-        private GlobalAssetRestServiceDBEntities db = new GlobalAssetRestServiceDBEntities();
+        private GlobalAssetRestServiceModel db = new GlobalAssetRestServiceModel();
 
         // GET: GlobalAssets
         public ActionResult Index()

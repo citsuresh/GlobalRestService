@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Diagnostics;
 using System.Linq;
@@ -16,7 +15,7 @@ namespace GlobalRestService.Controllers
 	public class GlobalAssetsApiController : ApiController
 	{
 
-		private GlobalAssetRestServiceDBEntities db = new GlobalAssetRestServiceDBEntities();
+		private GlobalAssetRestServiceModel db = new GlobalAssetRestServiceModel();
 
 		// GET api/<controller>
 		public IEnumerable<GlobalAsset> Get()
@@ -37,17 +36,17 @@ namespace GlobalRestService.Controllers
 		}
 
 		// GET api/<controller>/5
-		public string Get(int id)
-		{
-			var existingCounter = db.GlobalAssets.FirstOrDefault(counter => counter.AssetID == id);
+		//public string Get(int id)
+		//{
+		//	var existingCounter = db.GlobalAssets.FirstOrDefault(counter => counter.AssetID == id);
 
-			if (existingCounter != null)
-			{
-				return JsonConvert.SerializeObject(existingCounter);
-			}
+		//	if (existingCounter != null)
+		//	{
+		//		return JsonConvert.SerializeObject(existingCounter);
+		//	}
 
-			return string.Empty;
-		}
+		//	return string.Empty;
+		//}
 
 		// POST api/<controller>
 		public void Post([FromBody]GlobalAsset asset)
@@ -59,6 +58,7 @@ namespace GlobalRestService.Controllers
 				try
 				{
 					db.GlobalAssets.AddOrUpdate(asset);
+
 					db.SaveChanges();
 					tx.Commit();
 				}
@@ -66,7 +66,13 @@ namespace GlobalRestService.Controllers
 				{
 					Debug.WriteLine(ex.Message);
 					tx.Rollback();
-					throw new HttpResponseException(HttpStatusCode.NotFound);
+					var responseMessage = new HttpResponseMessage(HttpStatusCode.InternalServerError)
+					{
+						Content = new StringContent(ex.GetDisplayMessage(), System.Text.Encoding.UTF8, "text/plain"),
+						StatusCode = HttpStatusCode.InternalServerError
+					};
+
+					throw new HttpResponseException(responseMessage);
 				}
 			}
 		}
@@ -81,8 +87,8 @@ namespace GlobalRestService.Controllers
 			{
 				try
 				{
-					db.GlobalAssets.Attach(asset);
-					db.Entry(asset).State = EntityState.Unchanged;
+					db.GlobalAssets.AddOrUpdate(asset);
+
 					db.SaveChanges();
 					tx.Commit();
 				}
@@ -95,16 +101,16 @@ namespace GlobalRestService.Controllers
 			}
 		}
 
-		// DELETE api/<controller>/5
-		public void Delete(int id)
-		{
-			var existingCounter = db.GlobalAssets.FirstOrDefault(counter => counter.AssetID == id);
+		//// DELETE api/<controller>/5
+		//public void Delete(int id)
+		//{
+		//	var existingCounter = db.GlobalAssets.FirstOrDefault(counter => counter.AssetID == id);
 
-			if (existingCounter != null)
-			{
-				db.GlobalAssets.Remove(existingCounter);
-				db.SaveChanges();
-			}
-		}
+		//	if (existingCounter != null)
+		//	{
+		//		db.GlobalAssets.Remove(existingCounter);
+		//		db.SaveChanges();
+		//	}
+		//}
 	}
 }
