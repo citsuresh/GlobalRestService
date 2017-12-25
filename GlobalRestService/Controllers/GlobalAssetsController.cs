@@ -46,7 +46,7 @@ namespace GlobalRestService.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AssetID,AssetType,AssetSubType,SerialNumber,ClientIdentifier,Status,LastServiceDate,NextServiceDate")] GlobalAsset globalAsset)
+        public ActionResult Create([Bind(Include = "AssetID,AssetType,AssetSubType,SerialNumber,ClientID,Status,LastServiceDate,NextServiceDate")] GlobalAsset globalAsset)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace GlobalRestService.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AssetID,AssetType,AssetSubType,SerialNumber,ClientIdentifier,Status,LastServiceDate,NextServiceDate")] GlobalAsset globalAsset)
+        public ActionResult Edit([Bind(Include = "AssetID,AssetType,AssetSubType,SerialNumber,ClientID,Status,LastServiceDate,NextServiceDate")] GlobalAsset globalAsset)
         {
             if (ModelState.IsValid)
             {

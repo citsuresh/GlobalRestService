@@ -18,6 +18,6 @@ namespace GlobalRestService.Models
         public int Count { get; set; }
 
         [StringLength(255)]
-        public string ClientIdentifier { get; set; }
+        public string ClientID { get; set; }
     }
 }

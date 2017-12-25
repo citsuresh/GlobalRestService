@@ -28,7 +28,7 @@ namespace GlobalRestService.Models
         public string SerialNumber { get; set; }
 
         [StringLength(255)]
-        public string ClientIdentifier { get; set; }
+        public string ClientID { get; set; }
 
         [Key]
         [Column(Order = 3)]
